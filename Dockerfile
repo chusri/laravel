@@ -51,6 +51,7 @@ RUN apt-get install -y \
 # Configure PHP-FPM
 RUN sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php5/fpm/php.ini
 RUN sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php5/fpm/php.ini
+RUN echo "xdebug.max_nesting_level=500" > /etc/php5/mods-available/xdebug.ini
 	# sed -i "s/display_errors = Off/display_errors = stderr/" /etc/php5/fpm/php.ini && \
 	# sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 30M/" /etc/php5/fpm/php.ini && \
 	# sed -i "s/;opcache.enable=0/opcache.enable=0/" /etc/php5/fpm/php.ini && \
@@ -79,6 +80,6 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 9000
 
-WORKDIR /opt/bin
+WORKDIR /data
 ENTRYPOINT ["/usr/sbin/php5-fpm", "-F"]
 ENTRYPOINT ["/opt/bin/nginx-start.sh"]
