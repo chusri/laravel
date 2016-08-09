@@ -74,6 +74,7 @@ RUN mkdir -p /data/
 RUN ls /data
 VOLUME ["/data"]
 
+COPY config/php.ini /etc/php5/fpm/php.ini
 
 # PORTS
 EXPOSE 80
