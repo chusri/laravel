@@ -46,7 +46,8 @@ RUN apt-get install -y \
 	php5-xmlrpc \
 	php5-xcache \
 	php5-mcrypt \
-	php5-gd
+	php5-gd \
+	vim
 
 # Configure PHP-FPM
 RUN sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php5/fpm/php.ini
@@ -75,6 +76,7 @@ RUN ls /data
 VOLUME ["/data"]
 
 COPY config/php.ini /etc/php5/fpm/php.ini
+COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # PORTS
 EXPOSE 80
